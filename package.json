@@ -1,0 +1,14 @@
+{
+  "name": "votaappserver",
+  "version": "1.0.0",
+  "description": "Vota App webservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm index.js"
+  },
+  "author": "calebe94",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
