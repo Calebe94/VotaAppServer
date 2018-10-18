@@ -4,11 +4,15 @@
   "description": "Vota App webservice",
   "main": "index.js",
   "scripts": {
-    "test": "npm index.js"
+    "test": "supervisor index.js",
+    "start": "node index.js"
   },
   "author": "calebe94",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongodb": "^3.1.8",
+    "mongoose": "^5.3.4",
+    "supervisor": "^0.12.0"
   }
 }

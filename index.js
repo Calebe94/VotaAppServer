@@ -2,15 +2,29 @@ var express = require('express');
 var app = express(); 
 var bodyParser = require('body-parser');
 
-app.listen(8080);
+var path = require("path");
+
+// var MongoClient = require('mongodb').MongoClient;
+// var mongo = require('mongodb');
+
+// var mongoose = require('mongoose');
+
+var routes = require('./app/Routes');
+
+const config = require('./app/Config');
+
+// mongoose.connect(config.DB);
+
+app.listen(config.PORT);
+
+console.log("> Server running on port: http://localhost:"+config.PORT);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-var email;
-var senha;
+app.use('/api', routes);
 
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -18,9 +32,8 @@ app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-
 app.get('/', function(req, res) {
-	res.send('Servidor ON!');
+	res.send('Servidor Online!');
   //res.sendFile('index.html');
 });
 
