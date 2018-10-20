@@ -2,18 +2,33 @@ var express = require('express');
 var app = express(); 
 var bodyParser = require('body-parser');
 
-var path = require("path");
+var mongoose = require('mongoose');
 
-// var MongoClient = require('mongodb').MongoClient;
-// var mongo = require('mongodb');
+var routes = require('./services/Routes');
 
-// var mongoose = require('mongoose');
+const config = require('./config/Config');
 
-var routes = require('./app/Routes');
+var { Prefeitos, Vereadores, Eleitores } = require('./models/Model');
 
-const config = require('./app/Config');
+// var createDb = require('./scripts/createdb');
 
-// mongoose.connect(config.DB);
+
+mongoose.connect(config.DB, { useNewUrlParser: true }, function(error, databese){
+  if(error) throw error;
+  else{
+    databese.db.listCollections({name: 'vereadores'}).next(function(err, collections) {
+      
+      if(collections)
+      {
+        console.log("> Conectado ao banco com sucesso!");
+      }
+      else
+      {
+        var createdb = require('./scripts/createdb');
+      }
+    });
+  }
+});
 
 app.listen(config.PORT);
 
@@ -42,3 +57,4 @@ app.post("/api/auth/", function(req, res){
   // res.send(req.body);
   res.send({ username: true, password: true});
 });
+

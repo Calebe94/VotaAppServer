@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "supervisor index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "createdb": "node scripts/createdb.js"
   },
   "author": "calebe94",
   "license": "ISC",
