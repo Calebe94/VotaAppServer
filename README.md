@@ -27,6 +27,9 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
 ## Rotas
 
 ### Autenticação
+
+Rota para a autenticação do eleitor.
+
 ```
   /api/auth/
 ```
@@ -39,6 +42,9 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
       curl -d '{"username": "123412341234", "password": "spcsp2018"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/auth/
 
 ### Candidatos
+
+Rota para resgatar todos os candidatos cadastrados no banco de dados.
+
 ```
   /api/candidatos/:type
 ```
@@ -51,6 +57,8 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
       curl http://localhost:8080/api/candidatos/vereador
 
 ### Adicionar 
+
+Rota utilizada para cadastrar **Prefeito**, **Vereador** e **Eleitor**.
 
 ```
   /api/add/:(vereador/prefeito/eleitor)
@@ -66,6 +74,8 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
       curl -d '{"nome": "Jon Doe", "titulo": "123112311231", "senha": "umasenhaforte"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/add/eleitor
 
 ### Votar
+
+Rota utilizada para efetuar a votação realizada pelo eleitor.
 
 ```
   /api/votar/
@@ -84,7 +94,8 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
   * vota_app
 
 * Collections
-  * candidatos
+  * vereadores
+  * prefeitos
   * eleitores
 
 # Referências
