@@ -1,21 +1,22 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 
 // Define collection and schema for candidatos Item
 var candidato = new mongoose.Schema(
     {
-        nome: String,
-        partido: String,
-        foto: String,
-        votos: Number
+        nome: { type:String },
+        partido: { type:String },
+        foto: { type:String },
+        votos: { type:Number,default:0 }
     }
 );
 
 var eleitor = new mongoose.Schema(
     {
-        nome: String,
-        titulo: String,
-        senha: String,
-        votou: Boolean
+        nome: { type:String },
+        titulo: { type:String },
+        senha: { type:String },
+        votou: { type:Number,default:0 }
     }
 );
 

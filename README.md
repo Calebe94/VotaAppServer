@@ -50,13 +50,20 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
         
       curl http://localhost:8080/api/candidatos/vereador
 
-### Adicionar Candidatos
+### Adicionar 
 
-Em desenvolvimento...
+```
+  /api/add/:(vereador/prefeito/eleitor)
+```
+  * Tipo: POST
+  * Recebe: 
+      * Vereador/Prefeito: { nome: nome_candidato, partido: partido_candidato, foto: url_foto }
+      * Eleitor: { nome: nome_eleitor, titulo: titulo_eleitor, senha: senha_eleitor }
+  * Retorna: { status: true/false}
 
-### Adicionar Eleitores
-
-Em desenvolvimento...
+* Teste: 
+        
+      curl -d '{"nome": "Jon Doe", "titulo": "123112311231", "senha": "umasenhaforte"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/add/eleitor
 
 ### Votar
 
@@ -64,7 +71,7 @@ Em desenvolvimento...
   /api/votar/
 ```
   * Tipo: POST
-  * Recebe: { type: prefeito/vereador, id: _id }
+  * Recebe: { type: prefeito/vereador, id_candidato: _id_candidato, id_eleitor: _id_eleitor }
   * Retorna: { status: true/false}
 
 * Teste: 

@@ -3,6 +3,7 @@ var app = express();
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 
 var routes = require('./services/Api');
 
