@@ -1,7 +1,8 @@
-
 var express = require('express')
 
 var api_routes = express.Router()
+
+var {Vereadores, Prefeitos, Eleitores} = require('../models/Model');
 
 api_routes.route('/auth').post(function(req, res){
     res.send({ auth: true});

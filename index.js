@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
 
-var routes = require('./services/Routes');
+var routes = require('./services/Api');
 
 const config = require('./config/Config');
 
@@ -50,6 +50,10 @@ app.use(function(req, res, next) {
 app.get('/', function(req, res) {
 	res.send('Servidor Online!');
   //res.sendFile('index.html');
+  Eleitores.find({titulo: "123412341234"}).exec(function(err, eleitor) {
+    if (err) throw err;
+    console.log(eleitor);
+  });
 });
 
 app.post("/api/auth/", function(req, res){

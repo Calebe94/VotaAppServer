@@ -24,6 +24,36 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
     npm start
   ```
 
+## Rotas
+
+### Autenticação
+```
+  /api/auth/
+```
+  * Tipo: POST
+  * Recebe: JSON { username: username, password: password}
+  * Retorna: {"auth":true}%
+
+* Teste: 
+
+      curl -d '{"username": "123412341234", "password": "spcsp2018"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/auth/
+
+### Candidatos
+```
+  /api/candidatos/:type
+```
+  * Tipo: GET
+  * Recebe: vereador ou prefeito como parâmetro de URL
+  * Retorna: [ { nome: String, partido: String, foto: String } ]
+
+* Teste: 
+        
+      curl http://localhost:8080/api/candidatos/vereador
+
+### Adicionar candidatos
+
+Em desenvolvimento...
+
 ## Banco
 
 * Nome do **Database** 
