@@ -18,4 +18,9 @@ api_routes.route('/candidatos/:type').get(function(req, res){
     res.send({ prefeito: "Mr Foda-se!"});
 });
 
+api_routes.route('/votar').post(function(req, res){
+    console.log(JSON.stringify(req.body));
+    res.send({ status:"true"});
+});
+
 module.exports = api_routes;

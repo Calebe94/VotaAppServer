@@ -44,15 +44,32 @@ Web service para o [VotaApp](https://github.com/thecobra159/VotaAPP/tree/develop
 ```
   * Tipo: GET
   * Recebe: vereador ou prefeito como parâmetro de URL
-  * Retorna: [ { nome: String, partido: String, foto: String } ]
+  * Retorna: [ { nome: String, partido: String, foto: String, id: _id } ]
 
 * Teste: 
         
       curl http://localhost:8080/api/candidatos/vereador
 
-### Adicionar candidatos
+### Adicionar Candidatos
 
 Em desenvolvimento...
+
+### Adicionar Eleitores
+
+Em desenvolvimento...
+
+### Votar
+
+```
+  /api/votar/
+```
+  * Tipo: POST
+  * Recebe: { type: prefeito/vereador, id: _id }
+  * Retorna: { status: true/false}
+
+* Teste: 
+        
+      curl -d '{"type": "prefeito", "id": "ads213213sadas0231209us"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/votar
 
 ## Banco
 
