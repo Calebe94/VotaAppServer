@@ -35,7 +35,7 @@ Rota para a autenticação do eleitor.
 ```
   * Tipo: POST
   * Recebe: JSON { username: username, password: password}
-  * Retorna: {"auth":true, "votou": (0/1)}
+  * Retorna: {"auth":true, "votou": (0/1), "prefeito": candidato_info, "vereador": candidato_info }
 
 * Teste: 
 

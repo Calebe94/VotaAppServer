@@ -6,11 +6,26 @@ var {Vereadores, Prefeitos, Eleitores} = require('../models/Model');
 
 api_routes.route('/auth').post(function(req, res){
     Eleitores.findOne({titulo: req.body.username}).exec(function(error, eleitor){
+        // console.log(eleitor.prefeito)
         try
         {
             if(eleitor.senha == req.body.password)
             {
-                res.send({ auth: true , votou: eleitor.votou});
+                if( eleitor.votou == 1 || eleitor.votou == "1")
+                {
+                    // Prefeitos.findOne(inteleitor.prefeito), function (err, prefeito_db) { 
+                    Prefeitos.findById({ _id: eleitor.prefeito }).exec(function(error, prefeito_db){
+                        console.log(prefeito_db);
+                        Vereadores.findOne({ _id: eleitor.vereador }).exec(function(error, vereador_db){
+                            console.log(vereador_db);
+                            res.send({ auth: true , votou: eleitor.votou, prefeito: prefeito_db, vereador: vereador_db});
+                        });
+                    });
+                }
+                else
+                {
+                    res.send({ auth: true , votou: eleitor.votou });
+                }
             }
             else
             {
@@ -116,7 +131,7 @@ api_routes.route('/votar').post(function(req, res){
                         else 
                         {
                             // console.log("> "+response);
-                            Eleitores.findOneAndUpdate({ titulo: req.body.eleitor }, {$bit: {votou: {xor: 1}} }, function(error, response){
+                            Eleitores.findOneAndUpdate({ titulo: req.body.eleitor }, {$bit: {votou: {xor: 1}}, vereador: req.body.vereador, prefeito: req.body.prefeito  }, function(error, response){
                                 if (error)
                                 {
                                     console.log("> Error: "+error);

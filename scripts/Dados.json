@@ -114,32 +114,44 @@
         {
             "nome": "Marcelo das Neves",
             "titulo": "132509520302",
-            "senha": "riorj2018"
+            "senha": "riorj2018",
+            "vereador": "",
+            "prefeito": ""
         },
         {
             "nome": "Kaliandra Alves",
             "titulo": "104491090442",
-            "senha": "sulrs2018"
+            "senha": "sulrs2018",
+            "vereador": "",
+            "prefeito": ""
         },
         {
             "nome": "João Paulo",
             "titulo": "035141840116",
-            "senha": "spcsp2018"
+            "senha": "spcsp2018",
+            "vereador": "",
+            "prefeito": ""
         },
         {
             "nome": "Manoel Benevides",
             "titulo": "014611861643",
-            "senha": "riorj2018"
+            "senha": "riorj2018",
+            "vereador": "",
+            "prefeito": ""
         },
         {
             "nome": "João dos Santos",
             "titulo": "123412341234",
-            "senha": "spcsp2018"
+            "senha": "spcsp2018",
+            "vereador": "",
+            "prefeito": ""
         },
         {
             "nome": "Joanidia Morete Mattos",
             "titulo": "688033403161",
-            "senha": "nitrj2018"
+            "senha": "nitrj2018",
+            "vereador": "",
+            "prefeito": ""
         }
     ]
 }

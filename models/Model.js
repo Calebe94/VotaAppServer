@@ -16,7 +16,9 @@ var eleitor = new mongoose.Schema(
         nome: { type:String },
         titulo: { type:String },
         senha: { type:String },
-        votou: { type:Number,default:0 }
+        votou: { type:Number,default:0 },
+        vereador: {type: String},
+        prefeito: { type: String}
     }
 );
 
