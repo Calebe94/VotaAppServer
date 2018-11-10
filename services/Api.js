@@ -10,7 +10,7 @@ api_routes.route('/auth').post(function(req, res){
         {
             if(eleitor.senha == req.body.password)
             {
-                res.send({ auth: true });
+                res.send({ auth: true , votou: eleitor.votou});
             }
             else
             {
