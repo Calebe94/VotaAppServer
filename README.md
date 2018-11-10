@@ -35,7 +35,7 @@ Rota para a autenticação do eleitor.
 ```
   * Tipo: POST
   * Recebe: JSON { username: username, password: password}
-  * Retorna: {"auth":true}%
+  * Retorna: {"auth":true, "votou": (0/1)}
 
 * Teste: 
 
@@ -81,12 +81,12 @@ Rota utilizada para efetuar a votação realizada pelo eleitor.
   /api/votar/
 ```
   * Tipo: POST
-  * Recebe: { type: prefeito/vereador, id_candidato: _id_candidato, id_eleitor: _id_eleitor }
+  * Recebe: { eleitor: id_eleitor, vereador: _id_vereador, prefeito: _id_prefeito }
   * Retorna: { status: true/false}
 
 * Teste: 
-        
-      curl -d '{"type": "prefeito", "id": "ads213213sadas0231209us"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/votar
+      curl -d '{"eleitor":"123412341234","vereador":"5bd278cbb6157a6312833c1b","prefeito":"5bd278cbb6157a6312833c0d"}' -H "Content-Type: application/json" -X POST http://localhost:8080/api/votar
+      
 
 ## Banco
 
