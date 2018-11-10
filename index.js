@@ -13,7 +13,6 @@ var { Prefeitos, Vereadores, Eleitores } = require('./models/Model');
 
 // var createDb = require('./scripts/createdb');
 
-
 mongoose.connect(config.DB, { useNewUrlParser: true }, function(error, databese){
   if(error) throw error;
   else{
@@ -36,9 +35,12 @@ app.listen(config.PORT);
 console.log("> Server running on port: http://localhost:"+config.PORT);
 
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// app.options('*', cors());
 
 app.use('/api', routes);
 
@@ -48,18 +50,19 @@ app.use(function(req, res, next) {
     res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
-app.get('/', function(req, res) {
-	res.send('Servidor Online!');
-  //res.sendFile('index.html');
-  Eleitores.find({titulo: "123412341234"}).exec(function(err, eleitor) {
-    if (err) throw err;
-    console.log(eleitor);
-  });
-});
 
-app.post("/api/auth/", function(req, res){
-  console.log(req.body);
-  // res.send(req.body);
-  res.send({ username: true, password: true});
-});
+// app.get('/', function(req, res) {
+// 	res.send('Servidor Online!');
+//   //res.sendFile('index.html');
+//   Eleitores.find({titulo: "123412341234"}).exec(function(err, eleitor) {
+//     if (err) throw err;
+//     console.log(eleitor);
+//   });
+// });
+
+// app.post("/api/auth/", function(req, res){
+//   console.log(req.body);
+//   // res.send(req.body);
+//   res.send({ username: true, password: true});
+// });
 

@@ -82,7 +82,7 @@ api_routes.route('/candidatos/:type').get(function(req, res){
 
 api_routes.route('/votar').post(function(req, res){
 
-    Eleitores.findById({ _id: req.body.id_eleitor }, function(error, response){
+    Eleitores.findOne({ titulo: req.body.eleitor }, function(error, response){
         if(error)
         {
             res.send( { status: false });
@@ -94,61 +94,46 @@ api_routes.route('/votar').post(function(req, res){
         }
         else
         {
-            if(req.body.type == "vereador")
-            {
-                Vereadores.findOneAndUpdate({ _id: req.body.id_candidato }, { $inc: { votos: 1 } },function(error, response) {
-                    if (error) 
-                    {
-                        console.log("> Error: "+error)
-                    } 
-                    else 
-                    {
-                        Eleitores.findOneAndUpdate({ _id: req.body.id_eleitor }, {$bit: {votou: {xor: 1}} }, function(error, response){
-                            if (error)
-                            {
-                                console.log("> Error: "+error);
-                                res.send( { status: false });
-                            }
-                            else
-                            {
-                                console.log("> Voto confirmado !");
-                                res.send( { status: true });
-                            }
-                        });
-                    }
-                });
-            }
-            else if(req.body.type == "prefeito")
-            {
-                Prefeitos.findOneAndUpdate({ _id: req.body.id_candidato }, { $inc: { votos: 1 } },function(error, response) {
-                    if (error) 
-                    {
-                        console.log("> Error: "+error)
-                        res.send( { status: false });
-                    } 
-                    else 
-                    {
-                        // console.log("> "+response);
-                        Eleitores.findOneAndUpdate({ _id: req.body.id_eleitor }, {$bit: {votou: {xor: 1}} }, function(error, response){
-                            if (error)
-                            {
-                                console.log("> Error: "+error);
-                                res.send( { status: false });
-                            }
-                            else
-                            {
-                                res.send( { status: true });
-                                console.log("> Voto confirmado !");
-                            }
-                        });
-                    }
-                });
-            }
-            else
-            {
-                res.send( { status: false });
-            }   
+            // {
+            //     "eleitor": "id_eleitor",
+            //     "vereador": "id_vereador",
+            //     "prefeito": "id_prefeito"
+            // }
+            Vereadores.findOneAndUpdate({ _id: req.body.vereador }, { $inc: { votos: 1 } },function(error, response) {
+                if (error) 
+                {
+                    console.log("> Error: "+error)
+                    res.send( { status: false });
+                } 
+                else 
+                {
+                    Prefeitos.findOneAndUpdate({ _id: req.body.prefeito }, { $inc: { votos: 1 } },function(error, response) {
+                        if (error) 
+                        {
+                            console.log("> Error: "+error)
+                            res.send( { status: false });
+                        } 
+                        else 
+                        {
+                            // console.log("> "+response);
+                            Eleitores.findOneAndUpdate({ titulo: req.body.eleitor }, {$bit: {votou: {xor: 1}} }, function(error, response){
+                                if (error)
+                                {
+                                    console.log("> Error: "+error);
+                                    res.send( { status: false });
+                                }
+                                else
+                                {
+                                    res.send( { status: true });
+                                    console.log("> Voto confirmado !");
+                                }
+                            });
+                        }
+                    });
+                }
+            });
         }
+            
     });
 });
 
